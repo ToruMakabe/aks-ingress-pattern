@@ -1,0 +1,20 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: nginx
+spec:
+  chart:
+    spec:
+      chart: ingress-nginx
+      version: "3.33.0"
+  # Default values
+  # https://github.com/kubernetes/ingress-nginx/blob/master/charts/ingress-nginx/values.yaml
+  values:
+    controller:
+      service:
+        annotations:
+          service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+        type: LoadBalancer
+        # choose the one you like from cluster or internal LB subnet
+        loadBalancerIP: 10.240.255.1
+        externalTrafficPolicy: Local

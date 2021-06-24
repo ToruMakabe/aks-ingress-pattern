@@ -1,0 +1,29 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: podinfo
+  namespace: podinfo
+spec:
+  chart:
+    spec:
+      # stay 5.x for the following reasons
+      # https://github.com/stefanprodan/podinfo/pull/136
+      # https://github.com/Azure/application-gateway-kubernetes-ingress/issues/1122
+      version: "5.2.x"
+  test:
+    enable: false
+  values:
+    replicaCount: 2
+    resources:
+      limits:
+        memory: 50Mi
+      requests:
+        cpu: 10m
+        memory: 16Mi
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: azure/application-gateway
+        appgw.ingress.kubernetes.io/cookie-based-affinity: "true"
+      path: /
+    logLevel: debug
