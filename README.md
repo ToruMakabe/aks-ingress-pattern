@@ -21,8 +21,8 @@ Mainly use Azure CLI and flux v2
 
 ### Prerequisites / Tested
 
-* [Azure CLI](https://docs.microsoft.com/ja-jp/cli/azure/install-azure-cli): 2.25.0
-  * [aks-preview extension](https://docs.microsoft.com/ja-jp/cli/azure/azure-cli-extensions-overview): 0.5.19
+* [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli): 2.25.0
+  * [aks-preview extension](https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview): 0.5.19
 * Azure Kubernetes Service: 1.19.11
 * [flux](https://fluxcd.io/docs/get-started/): 0.15.3
 
@@ -162,7 +162,7 @@ az network application-gateway create \
   --public-ip-address pip-appgw \
   --servers 10.240.255.1
 ```
-You can replace NGINX Ingress Service IP address with --servers option. Match the definition in release vaule.
+You can replace NGINX Ingress Service IP address with --servers option. Match the definition in release [vaule](https://github.com/ToruMakabe/aks-ingress-pattern/blob/0b3f2d4d949f7f3830114dd3b3591e21cae96e76/infrastructure/combi/nginx-values.yaml#L19).
 
 After use
 ```
